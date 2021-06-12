@@ -31,7 +31,7 @@ def get_mail_account(noreply=True):
     mail_account = {}
     if noreply:
         mail_account["email"] = "noreply@telegrammt4.com"
-        mail_account["password"] = "ZAQ!XSW@cde3"
+        mail_account["password"] = ""
     else:
         if mcs.SERVICE_EMAIL_INDEX == 0:
             mail_account["email"] = "service@telegrammt4.com"
@@ -39,7 +39,7 @@ def get_mail_account(noreply=True):
         else:
             mail_account["email"] = "tech@telegrammt4.com"
             mcs.SERVICE_EMAIL_INDEX = 0
-        mail_account["password"] = "ZAQ!XSW@cde3"
+        mail_account["password"] = ""
     return mail_account
 
 
