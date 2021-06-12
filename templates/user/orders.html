@@ -1,0 +1,184 @@
+{% extends 'user/base.html' %}
+
+{% block page_content %}
+    <section class="content" id="account_div">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header with-border" style="text-align: center">
+                        <h3 class="box-title" style="font-size: 24px;">
+                            {% if order_cn == 0 %}
+                                <span style="color: darkkhaki;">Please subscribe first</span>
+                            {% else %}
+                                <span style="color: darkkhaki;"><h2 style="color: #4fd047;font-size: 40px;font-weight: bold;">Congratulations</h2><br>
+                                    {%  if copier_count > 0  %}
+                                        Please refer the <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="{{ user_guide }}">user manual</a> when installing our copier!<br>
+                                        Click <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="{{ app_path }}">here</a> to download our copier!<br>
+                                        Join <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="https://t.me/joinchat/AAAAAElleyzWDJEQxJKxHQ" target="_blank">us</a> to get update permanently!<br>
+                                        <!--Subscribe <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="http://t.me/lectumbot?start=sub-aa63c0e5-bc09-46d8-83ae-2316857cbfec" target="_blank">Verified Signal</a> channel!-->
+                                            <br>
+                                        Required OS: <a style="color: aqua;font-size: 30px;font-weight: bold;">Windows 8.1, 10, 2012, 2016, 2019</a>
+                                        <br><br>
+                                    {% endif %}
+                                    {% if signal_count > 0 %}
+                                        Please refer the <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="/static/telmtcp/app/verified_signal_settings.pdf">settings</a> when following our signal with our copier!<br>
+                                    {% endif %}
+                                        <br>
+                                    Join <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="https://t.me/ForexForumToFindTheBestSignal" target="_blank">us</a> to get discussion of our community!<br>
+                                    Contact <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="https://t.me/DedicatedTelegramMT4Copier" target="_blank">us</a> if you have any problem!<br>
+                                    <br><br><br>
+                                </span>
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <form class="form-horizontal" id="account_form">
+                        <div class="box-body">
+                            {% for order in order_info %}
+                                <h4><i class="fa fa-arrow-circle-right"> </i> Order {{ order.no }}</h4>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <div class="col-md-4 col-lg-4 col-sm-4">
+                                            <span class="order_c_label">Created Date </span>
+                                        </div>
+                                        <div class="col-md-8 col-lg-8 col-sm-8">
+                                            <span>{{ order.create_date }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <div class="col-md-4 col-lg-4 col-sm-4">
+                                            <span class="order_c_label">Plan Description </span>
+                                        </div>
+                                        <div class="col-md-8 col-lg-8 col-sm-8">
+                                            <span>{{ order.description }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <div class="col-md-4 col-lg-4 col-sm-4">
+                                            <span class="order_c_label">Plan Type </span>
+                                        </div>
+                                        <div class="col-md-8 col-lg-8 col-sm-8">
+                                            <span>{{ order.plan_type }}</span>
+                                            {% if order.is_subscribed == 1 %}
+                                                <a class="btn btn-app delbtn" onclick="onclick_cancel_subscription({{ order.id }}, '{{ order.subscription_id }}');" title="Cancel Subscription" class="btn btn-app"><i class="fa fa-trash-o" style="display: inline-block"></i> cancel</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if order.plan_id  < 12 %}
+                                    {% for account in order.accounts %}
+                                        <div class="form-group">
+                                            <label for="" class="col-md-4 col-lg-4 col-sm-4 control-label">{{ account.name }}</label>
+                                            <div class="col-md-8 col-lg-8 col-sm-8">
+                                                <input type="text" class="form-control acin_{{ order.id }}" id="account_{{ account.no }}" name="account_{{ account.no }}" value="{{ account.account_item }}">
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-lg-12 col-sm-12">
+                                            <button onclick="onclick_update_account({{ order.id }}, {{ order.plan_id }});" type="button" title="Update Account" class="btn btn-info pull-right">Update</button>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="form-group">
+                                        <label for="" class="col-md-4 col-lg-4 col-sm-4 control-label">Telegram Phone number</label>
+                                        <div class="col-md-8 col-lg-8 col-sm-8">
+                                            <input type="text" class="form-control phone_{{ order.id }}" id="phone_{{ order.id }}" name="phone_{{ order.id }}" value="{{ order.phone }}">
+                                        </div>
+                                    </div>
+                                    {% for account in order.accounts %}
+                                        <div class="form-group">
+                                            <label for="" class="col-md-4 col-lg-4 col-sm-4 control-label">{{ account.name }}</label>
+                                            <div class="col-md-8 col-lg-8 col-sm-8">
+                                                <input type="text" class="form-control acin_{{ order.id }}" id="account_{{ account.no }}" name="account_{{ account.no }}" value="{{ account.account_item }}">
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-lg-12 col-sm-12">
+                                            <button onclick="onclick_update_account({{ order.id }}, {{ order.plan_id }});" type="button" title="Update Account" class="btn btn-info pull-right">Update</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="box-footer">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function onclick_update_account(id, plan_id=1) {
+
+            var accounts = {};
+            var phone = "";
+            if (plan_id !== 12)
+            {
+                var acins = $('.acin_' + id);
+                var total_blanks_cn = 0;
+                for (var i = 0; i < acins.length; i++) {
+                    if ($(acins[i]).val() === '') {
+                        total_blanks_cn++;
+                    }
+                    var key = 'account_' + i;
+                    accounts[key] = $(acins[i]).val();
+                }
+                if (total_blanks_cn === acins.length) {
+                    alert('Please fill at least one account');
+                    return false;
+                }
+            }
+            if (plan_id > 11)
+            {
+                var el_phone = document.getElementById('phone_' + id);
+                phone = el_phone.value;
+                if (phone === "")
+                {
+                    alert('Please fill your telegram phone number');
+                    return false;
+                }
+            }
+
+            var data = {"plan_id": plan_id, "orderid": id, "accounts": JSON.stringify(accounts), "phone": phone};
+            $.ajax({
+                type: 'POST',
+                url:'update_account',
+                data: data,
+                success: function (res) {
+                    if (res === "error") {
+                        alert("Error occured");
+                    } else if (res === 'hacker') {
+                        alert("Please input correct account.");
+                    }
+                    else if (res === "success"){
+                        alert("success");
+                        window.location.href = 'order';
+                    }
+                    else {
+                        alert('error:' + res);
+                    }
+                }
+            });
+        }
+        function onclick_cancel_subscription(oid, sid) {
+            $.ajax({
+                type: 'POST',
+                url: 'cancel_subscription',
+                data: {'oid': oid, 'sid': sid},
+                success: function (res) {
+                    if (res === 'error') {
+                        alert("Error occured");
+                    } else {
+                        alert("Success");
+                        window.location.href = 'order';
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

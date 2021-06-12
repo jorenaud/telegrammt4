@@ -1,0 +1,13 @@
+paypal-checkout-serversdk
+django==2.2.6
+python-dateutil
+braintreehttp
+paypalrestsdk
+# mariadb-devel gcc
+mysqlclient
+sty
+django-session-timeout
+stripe
+web3
+eth_account
+pycoingecko

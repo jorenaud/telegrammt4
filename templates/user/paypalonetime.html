@@ -1,0 +1,152 @@
+{% load staticfiles %}
+{% include 'user/crypto_order.html' %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Pay your plan</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <span>Current Plan: <span style="font-weight: bold">$ {{ plan.price }}</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {% if payment.PAYPAL == True %}
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div id="paypal-button-container">
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if stripe_pubkey != "" and payment.STRIPE == True %}
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <button id="stripe-pay-btn" class="stripe-pay-btn-s" style="height: 42px;">Stripe</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if payment.CRYPTO == True %} <!-- and plan.id != 11 %}-->
+                            <div class="row">
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <button id="crypto-pay-btn" class="stripe-pay-btn-s" style="height: 42px; background-color: #0f253c !important; background-image: none">♦ Buy with Ether</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var plan_id = {{ plan.id }};
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: parseFloat({{ plan.price }}).toFixed(2)
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                $.ajax({
+                    type: "POST",
+                    url: "verify_paypal_onepay",
+                    data: {
+                        plan_id: plan_id,
+                        data: JSON.stringify(data),
+                        amount: JSON.stringify(details['purchase_units'][0]['amount']),
+                        capture_id: details['purchase_units'][0]['payments']['captures'][0]['id'],
+                    },
+                    datatype: "json",
+                    success: function (res) {
+                        var res = JSON.parse(res);
+                        if (res['result'] === "error") {
+                            alert(res['content']);
+                        } else {
+                            window.location.href = 'order';
+                        }
+                    }
+                });
+            });
+        },
+    }).render('#paypal-button-container');
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        var handler = StripeCheckout.configure({
+            key: '{{ stripe_pubkey }}',
+            allowRememberMe: true,
+            token: handleStripeToken,
+            shippingAddress: true,
+            name: 'Deposit',
+            description: 'Deposit Money',
+            locale: 'auto',
+            currency: 'usd',
+        });
+
+        $("#stripe-pay-btn").on('click', function (e) {
+            handler.open({
+                amount: parseFloat((parseFloat({{ plan.price }}) * 100).toFixed(2)),
+            });
+            return false;
+        });
+        $("#crypto-pay-btn").on('click', function (e) {
+            init_crypto_order_clock();
+            $.ajax({
+                type: "POST",
+                url: "create_crypto_order",
+                data: {
+                    crypto: 'ETH',
+                    plan_id: plan_id,
+                    plan_type: '',
+                    cac: 0
+                },
+                success: function (res) {
+                    res = JSON.parse(res);
+                    if (res['result'] === "error") {
+                        alert(res['content']);
+                    } else {
+                        init_crypto_order_modal(res['order_id'], res['crypto'], res['address'], res['amount'], res['price'], res['expire']);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+    function handleStripeToken(token, args) {
+        $.ajax({
+            type: "POST",
+            url: "verify_stripe_onepay",
+            data: {
+                plan_id: plan_id,
+                token: JSON.stringify(token),
+                amount: parseFloat({{ plan.price }}).toFixed(2),
+            },
+            datatype: "json",
+            success: function (res) {
+                var res = JSON.parse(res);
+                if (res['result'] === "error") {
+                    alert(res['content']);
+                } else {
+                    window.location.href = 'order';
+                }
+            }
+        });
+    }
+</script>

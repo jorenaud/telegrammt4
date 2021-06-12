@@ -1,0 +1,178 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block page_content %}
+    {% include 'user/customplan.html' %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="box box-info">
+                    <div class="box-header with-border" style="text-align: center;">
+                        <!--<h2 style="margin-top:5px;font-weight: bold"> Sorry, our website is still maintenance right now. please contact <a style="color: aqua;font-size: 30px;font-weight: bold;" download href="https://t.me/DedicatedTelegramMT4Copier" target="_blank">support</a> before you subscribe. </h2>-->
+                        <h2 style="margin-top:5px;font-weight: bold">Welcome your Best Choice </h2>
+                        <h4>We always value your choice. You can change your plan at any time.</h4>
+                    </div>
+                    <div class="box-body" style="text-align: center;">
+                        <h3 style="margin-top: 5px">One Week</h3>
+                        <div class="col-md-12 col-lg-12 col-sm-12 custom_row">
+                            <div class="custom_row" style="width: 37.5%;min-height: 1px;float: left"></div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-primary custom_box_border">
+                                <div class="box-body">
+                                    <h3>Trial</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_11.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_11.account_count }} demo account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_11.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <!--
+                        <h3 style="margin-top: 5px">Monthly Plan</h3>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-warning custom_box_border">
+                                <div class="box-body">
+                                    <h3>Basic</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_1.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_1.account_count }} account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_1.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-warning custom_box_border">
+                                <div class="box-body">
+                                    <h3>Plus</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_2.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_2.account_count }} account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_2.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-warning custom_box_border">
+                                <div class="box-body">
+                                    <h3>Professional</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_3.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_3.account_count }} account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_3.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-warning custom_box_border">
+                                <div class="box-body">
+                                    <h3>Premier</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_4.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_4.account_count }} account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_4.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>-->
+                        <h3>Yearly Plan</h3>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-info custom_box_border">
+                                <div class="box-body">
+                                    <h3>Basic</h3>
+                                    <!--<h3>Basic ( 20% off )</h3>-->
+                                    <span class="subscribe_price">$ {{ plans.plan_5.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_5.account_count }} real/demo account</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_5.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-info custom_box_border">
+                                <div class="box-body">
+                                    <h3>Plus</h3>
+                                    <!--<h3>Plus ( 20% off )</h3>-->
+                                    <span class="subscribe_price">$ {{ plans.plan_6.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_6.account_count }} real/demo accounts</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_6.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-info custom_box_border">
+                                <div class="box-body">
+                                    <h3>Professional</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_7.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_7.account_count }} real/demo accounts</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_7.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                            <div class="box box-info custom_box_border">
+                                <div class="box-body">
+                                    <h3>Premier</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_8.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_8.account_count }} real/demo accounts</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_8.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 custom_row">
+                            <div class="col-md-3 col-lg-3 col-sm-3 custom_row"></div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                                <h3>Life Plan</h3>
+                                <div class="box box-success custom_box_border">
+                                <div class="box-body">
+                                    <h3>Premier</h3>
+                                    <span class="subscribe_price">$ {{ plans.plan_9.price }}</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">{{ plans.plan_9.account_count }} real/demo accounts</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_9.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 custom_row">
+                                <h3>Custom Plan</h3>
+                                <div class="box box-success custom_box_border">
+                                <div class="box-body">
+                                    <h3>Premier</h3>
+                                    <span class="subscribe_price">Variable</span>
+                                    <ul class="subscribe_ul">
+                                        <li class="subscribe_li">Non-refundable</li>
+                                        <li class="subscribe_li">Variable accounts</li>
+                                    </ul>
+                                    <button onclick="onclick_subscribe({{ plans.plan_10.id }})" class="btn btn-info">Subscribe</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static "telmtcp/js/subscription.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'user/base.html' %}
+
+{% block page_content %}
+    <section class="content" id="profile_div">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info" id="profile_box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Update Profile</h3>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Username</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="username" v-model="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" placeholder="email" v-model="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-info pull-right" v-on:click="onclick_update_profile">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info" id="profile_box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Update Password</h3>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Current Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" placeholder="" v-model="cur_password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">New Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" placeholder="" v-model="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Confirm Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" placeholder="" v-model="confirm_password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-info pull-right" v-on:click="onclick_update_password">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            dashboard1_vue = new Vue({
+                delimiters: ['[[', ']]'],
+                el: "#profile_div",
+                data: {
+                    username: '{{ basedata.username }}',
+                    email: '{{ basedata.email }}',
+                    password: '',
+                    confirm_password: '',
+                    cur_password: ''
+                },
+                methods: {
+                    onclick_update_profile: function () {
+                        if (this.username === '') {
+                            alert("Please input username");return;
+                        }
+                        if (this.email === '') {
+                            alert("Please input email");return;
+                        }
+                        //let phone = $('#iti-0__country-listbox li[aria-selected="true"]').attr("data-dial-code") + this.phone;
+                        var param = {
+                            username: this.username,
+                            email: this.email,
+                        };
+                        $.ajax({
+                            type: 'POST',
+                            url: 'update_profile',
+                            data:param,
+                            success:function (res) {
+                                if (res === 'username_exist'){
+                                    alert("Username exists");return;
+                                }
+                                if (res === 'email_exist'){
+                                    alert("Email exists");return;
+                                }
+                                ajax_common_result_handler(res);
+                            }
+                        });
+                    },
+                    onclick_update_password: function () {
+                        var param = {
+                            password: this.password,
+                            confirm_password: this.confirm_password,
+                            cur_password: this.cur_password
+                        };
+                        if (this.password === '' || this.confirm_password === '' || this.cur_password === '' ) {
+                            alert('Please fill the blanks');return;
+                        }
+                        if (this.password !== this.confirm_password){
+                            alert('Confirm password does not match');return;
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: 'update_password',
+                            data:param,
+                            success:function (res) {
+                                if (res === 'curpwdno'){
+                                    alert("Current password does not match");return;
+                                }
+                                ajax_common_result_handler(res);
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

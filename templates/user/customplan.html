@@ -1,0 +1,134 @@
+<div class="modal fade" id="custom_plan" style="display: none;">
+    <div class="modal-dialog custom_info_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button onclick="close_modal('custom_plan')" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Customize your plan</h4>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Plan Type</label>
+                            <div class="col-sm-8" style="padding-top: 7px">
+                                <!--<label class="">
+                                    <input type="radio" name="r1" class="minimal" style="position: absolute; opacity: 0;" id="cp_r1">
+                                    <span>Monthly</span>
+                                </label>-->
+                                <label class="">
+                                    <input type="radio" name="r1" class="minimal" style="position: absolute; opacity: 0;" id="cp_r2" checked>
+                                    <span>Yearly</span>
+                                </label>
+                                <label class="">
+                                    <input type="radio" name="r1" class="minimal" style="position: absolute; opacity: 0;" id="cp_r3">
+                                    <span>Life</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">Account Count</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="custom_account_cn" style="-webkit-user-modify: read-write;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">Total Price</label>
+                            <div class="col-sm-8" style="padding-top: 7px">
+                                <span style="font-weight: bold">$ <span id="custom_total_price">0.00</span></span>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="close_modal('custom_plan')" type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="onclick_confirm_custom_plan()" class="btn btn-info">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function () {
+    $('input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass   : 'iradio_minimal-blue'
+    });
+    $('input[type="radio"].minimal').on('ifChecked', function(event){
+        if (Number.isInteger(parseFloat($('#custom_account_cn').val())) === false){
+            $('#custom_account_cn').val(0);
+            $('#custom_total_price').text('0.00');
+            return;
+        }
+        if (parseFloat($('#custom_account_cn').val()) > 100 || parseFloat($('#custom_account_cn').val()) <= 0) {
+            $('#custom_account_cn').val(0);
+            $('#custom_total_price').text('0.00');
+            return;
+        }
+        get_customized_plan();
+    });
+    $('#custom_account_cn').on('input',function () {
+        if (Number.isInteger(parseFloat($('#custom_account_cn').val())) === false && $('#custom_account_cn').val() !== ''){
+            $('#custom_account_cn').val(0);
+            $('#custom_total_price').text('0.00');
+            alert("Please input only integer");return;
+        }
+        if (parseFloat($('#custom_account_cn').val()) > 100 || parseFloat($('#custom_account_cn').val()) <= 0) {
+            $('#custom_account_cn').val(0);
+            $('#custom_total_price').text('0.00');
+            alert("Please input only integer between 1 and 100");return;
+        }
+        get_customized_plan();
+    });
+    function get_customized_plan() {
+        var custom_account_cn = parseInt($('#custom_account_cn').val());
+        var plan_type_id = $('input[type="radio"].minimal:checked')[0].id;
+        if(plan_type_id == 'cp_r1') {
+            var plan_type = 'M'
+        }
+        if(plan_type_id == 'cp_r2') {
+            var plan_type = 'Y'
+        }
+        if(plan_type_id == 'cp_r3') {
+            var plan_type = 'L'
+        }
+        var param = {plan_type: plan_type, custom_account_cn: custom_account_cn};
+        $.ajax({
+            type: "POST",
+            url: 'get_custom_plan_price',
+            data: param,
+            success: function (res) {
+                $('#custom_total_price').text(res);
+            }
+        });
+    }
+});
+
+function onclick_confirm_custom_plan() {
+    if (Number.isInteger(parseFloat($('#custom_account_cn').val())) === false){
+        $('#custom_account_cn').val(0);
+        $('#custom_total_price').text('0.00');
+        alert("Please input only integer");return;
+    }
+    if (parseFloat($('#custom_account_cn').val()) > 100 || parseFloat($('#custom_account_cn').val()) <= 0) {
+        $('#custom_account_cn').val(0);
+        $('#custom_total_price').text('0.00');
+        alert("Please input only integer between 1 and 100");return;
+    }
+    var custom_account_cn = parseInt($('#custom_account_cn').val());
+    var plan_type_id = $('input[type="radio"].minimal:checked')[0].id;
+    if(plan_type_id == 'cp_r1') {
+        var plan_type = 'M'
+    }
+    if(plan_type_id == 'cp_r2') {
+        var plan_type = 'Y'
+    }
+    if(plan_type_id == 'cp_r3') {
+        var plan_type = 'L'
+    }
+    var param = {plan_type: plan_type, custom_account_cn: custom_account_cn};
+    close_modal('custom_plan');
+    setTimeout(function () {
+        $('.content-wrapper').load('/load_paypal_custom_plans',param, function () {});
+    }, 2000);
+
+}
+</script>

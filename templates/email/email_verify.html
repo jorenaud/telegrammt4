@@ -1,0 +1,134 @@
+<html>
+{% load staticfiles %}
+{% load i18n %}
+    <head></head>
+    <body>
+        <div style="font-family: Helvetica, Arial, sans-serif, serif, EmojiFont; background-color: rgb(240, 240, 240);">
+        <table align="center" height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f0f0f0">
+        <tbody>
+        <tr>
+            <td>
+                <table width="690" align="center" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <!--
+                    <tr style="background-color:#f0f0f0">
+                        <td width="100%" align="center"><a href={{ site_url }}
+                                target="_blank" rel="noopener noreferrer" data-auth="NotApplicable"><img
+                                data-imagetype="External"
+                                src={{ site_logo_url }} alt="TelegramCopier" width="150" border="0" style="display:block"></a>
+                        </td>
+                    </tr>
+                    <tr style="background-color:#f0f0f0">
+                        <td width="100%" align="center">
+                            <img data-imagetype="External"
+                                src={{ verify_logo_url }}
+                                alt="TelegramCopier" width="690" border="0" style="display:block"></a>
+                        </td>
+                    </tr>-->
+                    <tr>
+                        <td width="100%" align="center">
+                            <table width="690" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center">
+                                <tbody>
+                                <tr>
+                                    <td width="100%" align="center"
+                                        style="color:#0E1724; text-align:left; font-family:Helvetica,Arial,sans-serif; font-size:16px; line-height:28px">
+                                        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center">
+                                            <tbody>
+                                            <tr>
+                                                <td height="30"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="padding:0; margin:0; font-size:1; line-height:0">
+                                                    <h2 style="color:#404040; font-size:22px; font-weight:bold; line-height:26px; padding:0px 30px; margin:0">
+                                                        Dear {{ username }},</h2>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" width="100%">
+                                        <br>
+                                        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr bgcolor="#ffffff">
+                                                <td width="30"></td>
+                                                <td>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td height="10"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style="font-family:Arial,Helvetica,sans-serif; font-size:16px; padding:0px 30px; color:#3e3e3e">
+                                                                    {% trans "Please enter the code below to continue your sign up" %} </p>
+                                                                <h2 style="font-family:Arial,Helvetica,sans-serif; font-size:26px; color:#3e3e3e; text-align:center; line-height:1.4">{{ confirm_code }}</h2>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="10"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td width="30"></td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table width="690" cellspacing="0" cellpadding="0" bgcolor="#ffffff" border="0" align="center">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:18px; line-height:20px; padding:0px 30px">{% trans "Regards," %}</div>
+                                        <div style="font-size:18px; line-height:26px; font-weight:bold; padding:0px 30px">
+                                            The {{ team_name }}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        <table align="center" width="690" border="0" cellspacing="0" cellpadding="0" bgcolor="#f0f0f0">
+        <tbody>
+        <tr>
+            <td height="24"></td>
+        </tr>
+        <tr>
+            <td align="center">© 2021 {{ company_name }}. All Rights Reserved.</td>
+        </tr>
+        <tr>
+            <td width="100%" height="8"></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <span style="text-decoration: none; font-family: Helvetica, Arial, sans-serif, serif, EmojiFont; color: rgb(117, 120, 125); font-size: 12px; line-height: 18px;">
+                    <a href="https://telegrammt4.com" style="color:#75787D; text-decoration:underline; font-family:Helvetica,Arial,sans-serif">{% trans "Privacy Policy" %}</a> |
+                    <a href="https://telegrammt4.com" style="color:#75787D; text-decoration:underline; font-family:Helvetica,Arial,sans-serif">{% trans "Terms and Conditions" %}</a>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td height="24"></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </body>
+</html>

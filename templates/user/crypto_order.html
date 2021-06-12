@@ -1,0 +1,44 @@
+<div class="modal fade" id="crypto_order" style="display: none;">
+    <div class="modal-dialog custom_info_modal" style="width: 350px; margin: 100px auto !important;">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;">
+                <h4 class="modal-title">To make a payment, send ETH to the address below.</h4>
+                <br>
+                <h4 class="modal-title" style="color: #ff6000">Please double-check the amount you send and the wallet address! If they are not correct we cannot guarantee a refund.</h4>
+                <br>
+                <div id="usd_amount" style="font-size: 25px; font-weight: bold; color: #00c0ef"></div>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                      <div class="col-sm-12">
+                          <label>Amount (ETH)</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" readonly id="eth_amount">
+                            <span class="input-group-addon btn" onclick="copy_function('eth_amount')"><i class="fa fa-copy"></i></span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                      <label>Ethereum Address</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" readonly id="eth_address">
+                            <span class="input-group-addon btn" onclick="copy_function('eth_address')"><i class="fa fa-copy"></i></span>
+                          </div>
+                        </div>
+                    </div>
+                    <p id="countdown" style="text-align: center; font-size: 15px;"></p>
+                    <div id="qrcode" style="text-align: -webkit-center; text-align: -moz-center;"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button id="close_crypto_button" style="margin-top: 10px" onclick="close_modal('crypto_order')" type="button" class="btn btn-default Eth_btn" data-dismiss="modal">Close</button>
+                        </div></div>
+                </form>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

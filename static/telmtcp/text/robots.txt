@@ -1,0 +1,29 @@
+# Google
+user-agent:googlebot
+Allow: /
+Disallow: /order/
+Disallow: /profile/
+Disallow: /subscription/
+
+# Yahoo
+user-agent: slurp
+Allow: /
+Disallow: /order/
+Disallow: /profile/
+Disallow: /subscription/
+
+# MSN
+user-agent: msnbot
+Allow: /
+Disallow: /order/
+Disallow: /profile/
+Disallow: /subscription/
+
+# others
+user-agent: *
+Allow: /
+Disallow: /order/
+Disallow: /profile/
+Disallow: /subscription/
+
+sitemap: https://telegrammt4.com/static/telmtcp/text/sitemap.xml

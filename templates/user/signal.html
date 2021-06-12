@@ -1,0 +1,60 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block page_content %}
+    <section class="content" id="account_div">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header with-border" style="text-align: center">
+                        <!--
+                        <div class="custom_row">
+                            <h3 class="box-title" style="font-size: 24px; width: 100%">
+                                <span style="color: darkkhaki;"><h2 style="color: #4fd047;font-size: 40px;font-weight: bold;">What About Our Verified Signal's Result</h2>
+                                    <a href="https://www.myfxbook.com/members/Jorenaud/jonathan/8339345" target="_blank">
+                                        <img style="width: 100%" class="portfolio-size" alt="widget" src="https://widgets.myfxbook.com/widget?id=8339345&type=2&color=orange"/>
+                                    </a>
+                                    <p><br></p>
+                                    <a href="https://www.myfxbook.com/members/Jorenaud/jonathan/8339345" target="_blank">
+                                        <img style="width: 100%" class="portfolio-size" alt="widget" src="https://widgets.myfxbook.com/custom-widget?id=8339345&width=800&height=350&bart=0&linet=1&symbol=ETHUSD&magic=-1&title=Verified Signal's Trading Result&titles=12&bgColor=ffffff&gridColor=bdbdbd&lineColor=ff0505&barColor=ffadad&bar1Color=ffadad&fontColor=525252&chartbgc=ffffff&equityColor=eff45a"/>
+                                    </a>
+                                </span>
+                            </h3>
+                        </div>-->
+                        <div class="custom_row">
+                            <h3>Monthly Plan</h3>
+                            <div class="col-md-6 col-lg-6 col-sm-6 custom_row">
+                                <div class="box box-success custom_box_border">
+                                    <div class="box-body">
+                                        <h3>Verified Signal</h3>
+                                        <span class="subscribe_price">$ {{ plans.plan_12.price }}</span>
+                                        <ul class="subscribe_ul">
+                                            <li class="subscribe_li">Non-refundable</li>
+                                            <li class="subscribe_li">2 or 5 Signals per day</li>
+                                            <li class="subscribe_li">&nbsp</li>
+                                        </ul>
+                                        <button onclick="onclick_subscribe({{ plans.plan_12.id }})" class="btn btn-info">Subscribe</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 custom_row">
+                                <div class="box box-success custom_box_border">
+                                    <div class="box-body">
+                                        <h3>Signal and Copier</h3>
+                                        <span class="subscribe_price">$ {{ plans.plan_13.price }}</span>
+                                        <ul class="subscribe_ul">
+                                            <li class="subscribe_li">Non-refundable</li>
+                                            <li class="subscribe_li">2 or 5 Signals per day</li>
+                                            <li class="subscribe_li">1 account Copier license </li>
+                                        </ul>
+                                        <button onclick="onclick_subscribe({{ plans.plan_13.id }})" class="btn btn-info">Subscribe</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static "telmtcp/js/subscription.js" %}"></script>
+{% endblock %}

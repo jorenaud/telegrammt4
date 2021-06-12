@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="48px" viewBox="0 0 158 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="-52.2404969%" x2="152.574255%" y2="173.560518%" id="linearGradient-1">
+            <stop stop-color="#FB834C" offset="0%"></stop>
+            <stop stop-color="#FFD2C8" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="26" cy="26" r="26"></circle>
+        <linearGradient x1="50%" y1="42.9592075%" x2="61.5867472%" y2="61.2811651%" id="linearGradient-4">
+            <stop stop-color="#2E51E5" offset="0%"></stop>
+            <stop stop-color="#101A8E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-158.000000, -118.000000)">
+            <g id="Logo" transform="translate(158.000000, 118.000000)">
+                <g id="Group-3" transform="translate(67.000000, 10.000000)" fill="#FFFFFF" font-family="SourceSansPro-Bold, Source Sans Pro" font-size="25" font-weight="bold">
+                    <g id="Group-52">
+                        <text id="SassGen">
+                            <tspan x="0" y="25">SassGen</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="S">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <text fill="url(#linearGradient-4)" mask="url(#mask-3)" font-family="SourceSansPro-Bold, Source Sans Pro" font-size="128.149996" font-weight="bold">
+                        <tspan x="-10" y="68">S</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

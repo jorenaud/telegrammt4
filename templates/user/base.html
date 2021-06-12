@@ -1,0 +1,179 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<html style="height: auto; min-height: 100%;"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title> Telegram MT4 Copier </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <link rel="shortcut icon" href="/static/telmtcp/img/icon/telegrammt4.ico" type="image/x-icon">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="/static/library/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/library/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="/static/library/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/library/dist/css/AdminLTE.min.css">
+
+  <link rel="stylesheet" href="/static/library/dist/css/skins/_all-skins.min.css">
+
+  <link rel="stylesheet" href="/static/library/ucss/main.css">
+
+  <link rel="stylesheet" href="/static/library/welcome_asset/assets/css/intlTelInput.css">
+
+  <link rel="stylesheet" href="/static/library/plugins/iCheck/all.css">
+
+  <script src="/static/library/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script src="/static/library/bower_components/jquery-ui/jquery-ui.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+{% csrf_token %}
+<!-- Site wrapper -->
+<div class="wrapper" style="height: auto; min-height: 100%;">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a class="logo" style="background-color: #53636d;">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><img src="/static/library/welcome_asset/assets/images/logo-mini.png" alt="" class="img-fluid" style="max-height: 50px;"></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="/static/library/welcome_asset/assets/images/logo.png" alt="" class="img-fluid" style="max-height: 50px;"></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" style="background-color: #53636d">
+      <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a class="dropdown-toggle hand" data-toggle="dropdown">
+                <!-- The user image in the navbar-->
+                <!--<img class="user-image" alt="User Image">-->
+                <img src="{% static "telmtcp/img/codestar.jpg" %}" class="user-image" alt="User Image">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs" id="username">{{ basedata.username }}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="user-header star-back-color">
+                    <img src="{% static "telmtcp/img/codestar.jpg" %}" class="img-circle" alt="User Image">
+                    <!--
+                    <img class="img-circle" alt="User Image">
+                    -->
+                    <p>{{ basedata.username }}
+                        <small>Member since {{ basedata.date_joined }}</small>
+                        <small>Last login {{ basedata.last_login }}</small>
+                    </p>
+                </li>
+                <li class="user-body"></li>
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="/profile" class="btn btn-default btn-flat hand">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="/logout" class="btn btn-default btn-flat hand">Sign out</a>
+                    </div>
+                </li>
+            </ul>
+        </li></ul>
+        </div>
+    </nav>
+  </header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar" style="height: auto;">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+      </div>
+      <!-- search form -->
+
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu tree" data-widget="tree">
+            {% for menu in menu_data %}
+              {% if menu.parent == 0 %}
+                  <li class="{% if menu.id == menu_id %}active {% endif %}">
+                      <a {% if menu.has_child == 0 %} href="{{ menu.url }}"{% endif %} class="{% if menu.id == menu_id %}left_sidebar_a{% endif %}">
+                        <i class="{{ menu.icon }}"></i>
+                        <span>{{ menu.name }}</span>
+                    </a>
+                  </li>
+              {% endif %}
+            {% endfor %}
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+      {% block page_content %}
+
+      {% endblock %}
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright © 2021 <a>Telegram Copier</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<!-- Bootstrap 3.3.7 -->
+<script src="/static/library/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/static/library/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/static/library/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/library/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/library/plugins/iCheck/icheck.min.js"></script>
+
+<script src="/static/library/ujs/main.js"></script>
+
+<script src="/static/library/welcome_asset/assets/js/intlTelInput.js"></script>
+
+<script src="/static/telmtcp/js/vue.js"></script>
+<script src="/static/telmtcp/js/common.js"></script>
+<script src="/static/telmtcp/js/qrcode.js"></script>
+
+<!--<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgIXZeGcXM_Hx1U_7A6q0hWvG-i2VdRqI&callback=initMap"></script>-->
+<script src="https://www.paypal.com/sdk/js?client-id={{client_id}}&vault=true"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('.sidebar-menu').tree()
+  })
+</script>
+
+
+</body></html>

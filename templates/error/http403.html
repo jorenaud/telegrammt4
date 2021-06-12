@@ -1,0 +1,6 @@
+{% extends 'error/ehandle.html' %}
+{% load i18n %}
+{% block page_content %}
+    <p style="font-size: 18pt;">{% trans "Not Authenticated" %}</p>
+    <p style="font-size: 13pt;">{% trans "Please login to your account." %}<a href="/">Login Page</a></p>
+{% endblock %}

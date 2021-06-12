@@ -1,0 +1,121 @@
+.hand{
+    cursor: pointer;
+}
+.left_sidebar_a {
+    border-left-color: #495963 !important;
+}
+.subscribe_li {
+    list-style-type: none;
+}
+.subscribe_ul {
+    padding-left: 0;
+}
+.custom_box_header {
+    border-top: 3px solid #c7cdd0 !important;
+}
+
+.custom_box_border {
+    border-bottom: 1px solid #dcdbdb;
+    border-right: 1px solid #dcdbdb;
+    border-left: 1px solid #dcdbdb;
+}
+.subscribe_price {
+    font-size: 26px;
+    font-weight: bold;
+}
+.live_offset {
+    margin-left: 37.5%;
+}
+.custom_row {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.custom_info_modal{
+    border-top: 4px solid #d2d6de;
+    border-top-color: #00c0ef;
+    border-radius: 4px;
+}
+.welc_btn_w {
+    color: #fff !important;
+}
+.order_c_label {
+    float: right;font-weight: 700
+}
+.delbtn {
+    padding: 5px 5px;
+    margin: 0;
+    height: 30px;
+}
+
+.alarm_group {
+    border-radius: 4px !important;
+    border: 3px dashed #34ff29 !important;
+    padding: 10px 100px 20px 100px;
+}
+.stripe-pay-btn-s {
+    font-style: italic;
+    border: 0;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    position: relative;
+    border-radius: 6px;
+    background-color: #3ea8e5;
+    background-image: linear-gradient(-180deg, #44b1e8, #3098de);
+    box-shadow: 0 1px 0 0 rgba(46, 86, 153, .15), inset 0 1px 0 0 rgba(46, 86, 153, .1), inset 0 -1px 0 0 rgba(46, 86, 153, .4);
+    font-size: 17px;
+    line-height: 21px;
+    height: 45px;
+    font-weight: 700;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+    color: #fff;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.Eth_btn {
+    margin-top: 10px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+.modal{
+    pointer-events: none;
+}
+
+.modal-dialog{
+    pointer-events: all;
+ }
+
+.portfolio-size {
+        width: 300px;
+    }
+
+@media (min-width: 400px) {
+    .portfolio-size {
+        width: 300px;
+    }
+}
+@media (min-width: 500px) {
+    .portfolio-size {
+        width: 400px;
+    }
+}
+
+@media (min-width: 600px) {
+    .portfolio-size {
+        width: 500px;
+    }
+}
+
+
+@media (min-width: 800px) {
+    .portfolio-size {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .portfolio-size {
+        width: 800px;
+    }
+}

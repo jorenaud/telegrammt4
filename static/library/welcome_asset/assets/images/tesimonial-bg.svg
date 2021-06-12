@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1329px" height="867px" viewBox="0 0 1329 867" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>tesimonial</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="115.497655%" y1="31.2091188%" x2="31.001292%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#7E77FF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="1218.5" cy="283.5" r="283.5"></circle>
+        <filter x="-0.6%" y="-0.4%" width="101.2%" height="101.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="115.497655%" y1="46.0142172%" x2="31.001292%" y2="60.6056304%" id="linearGradient-4">
+            <stop stop-color="#7E77FF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <path d="M240.5,637 L705.5,637 C742.107647,637 776.365751,646.853007 805.773159,664.057865 C835.180566,681.262724 859.737276,705.819434 876.942135,735.226841 C894.146993,764.634249 904,798.892353 904,835.5 C904,872.107647 894.146993,906.365751 876.942135,935.773159 C859.737276,965.180566 835.180566,989.737276 805.773159,1006.94213 C776.365751,1024.14699 742.107647,1034 705.5,1034 L240.5,1034 C203.892353,1034 169.634249,1024.14699 140.226841,1006.94213 C110.819434,989.737276 86.2627236,965.180566 69.0578651,935.773159 C51.8530066,906.365751 42,872.107647 42,835.5 C42,798.892353 51.8530066,764.634249 69.0578651,735.226841 C86.2627236,705.819434 110.819434,681.262724 140.226841,664.057865 C169.634249,646.853007 203.892353,637 240.5,637 Z" id="path-5"></path>
+        <filter x="-0.6%" y="-0.9%" width="101.3%" height="102.8%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.100000001">
+        <g id="Saas-Landing-page" transform="translate(0.000000, -4568.000000)">
+            <g id="Group-30" transform="translate(0.000000, 4568.000000)">
+                <g id="Header-shape-1">
+                    <g id="Oval">
+                        <g id="tesimonial" transform="translate(-175.000000, -252.000000)">
+                            <g id="Oval">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                            </g>
+                            <g id="Header-shape-1" transform="translate(473.000000, 835.500000) rotate(-20.000000) translate(-473.000000, -835.500000) ">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                                <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

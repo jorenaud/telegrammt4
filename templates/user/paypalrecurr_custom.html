@@ -1,0 +1,160 @@
+{% load staticfiles %}
+{% include 'user/crypto_order.html' %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Subscribe your plan</h3>
+                    <input type="hidden" value="" id="paypal_plan_id">
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <span>Current Plan: <span style="font-weight: bold">$ {{ plan.price }}</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {% if payment.PAYPAL == True %}
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div id="paypal-button-container-recur-cu">
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if stripe_pubkey != "" and payment.STRIPE == True %}
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <button id="stripe-pay-btn" class="stripe-pay-btn-s" style="height: 42px;">Stripe</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if payment.CRYPTO == True %}
+                            <div class="row">
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <button id="crypto-pay-btn" class="stripe-pay-btn-s" style="height: 42px; background-color: #0f253c !important; background-image: none">♦ Buy with Ether</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var plan_id = {{ plan.id }};
+    var cac = '{{ plan.custom_account_cn }}';
+    var plan_type = '{{ plan.plan_type }}';
+    paypal.Buttons({
+        onClick: function() {
+            var param = {plan_id: plan_id, plan_type: plan_type, cac: cac};
+            $.ajax({
+                type:'POST',
+                url:'create_paypal_plan_custom',
+                data: param,
+                async: false,
+                success:function (res) {
+                    $('#paypal_plan_id').val(res);
+                }
+            });
+        },
+        createSubscription: function(data, actions) {
+            var paypal_plan_id = $('#paypal_plan_id').val();
+            return actions.subscription.create({
+                  'plan_id': paypal_plan_id
+            });
+        },
+        onApprove: function(data, actions) {
+            var param = {plan_id: plan_id,cac: cac, plan_type: plan_type, callback_data: JSON.stringify(data)};
+            $.ajax({
+                type: "POST",
+                url: "verify_paypal_subscription_custom",
+                data: param,
+                success: function (res) {
+                    if (res === "error") {
+                        alert("Error occured");
+                    } else {
+                        //alert("Success");
+                        window.location.href = 'order';
+                    }
+                }
+            });
+        }
+    }).render('#paypal-button-container-recur-cu');
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        var handler = StripeCheckout.configure({
+            key: '{{ stripe_pubkey }}',
+            allowRememberMe: true,
+            token: handleStripeToken_v2,
+            shippingAddress: true,
+            name: 'Stripe Payment',
+            description: 'Online Subscription',
+            locale: 'auto',
+            currency: 'usd',
+            panelLabel: "Subscribe",
+        });
+
+        $("#stripe-pay-btn").on('click', function (e) {
+            handler.open({
+                amount: parseFloat((parseFloat({{ plan.price }}) * 100).toFixed(2)),
+            });
+            return false;
+        });
+        $("#crypto-pay-btn").on('click', function (e) {
+            init_crypto_order_clock();
+            $.ajax({
+                type: "POST",
+                url: "create_crypto_order",
+                data: {
+                    crypto: 'ETH',
+                    plan_id: plan_id,
+                    plan_type: plan_type,
+                    cac: cac
+                },
+                success: function (res) {
+                    res = JSON.parse(res);
+                    if (res['result'] === "error") {
+                        alert(res['content']);
+                    } else {
+                        init_crypto_order_modal(res['order_id'], res['crypto'], res['address'], res['amount'], res['price'], res['expire']);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+
+    function handleStripeToken_v2(token, args) {
+        $.ajax({
+            type: "POST",
+            url: "verifiy_stripe_subscription_custom",
+            data: {
+                plan_id: plan_id,
+                cac: cac,
+                plan_type: plan_type,
+                token: JSON.stringify(token),
+                amount: parseFloat({{ plan.price }}).toFixed(2),
+            },
+            success: function (res) {
+                    if (res === "error") {
+                        alert("Error occured");
+                    } else {
+                        //alert("Success");
+                        window.location.href = 'order';
+                    }
+                }
+        });
+    }
+</script>
